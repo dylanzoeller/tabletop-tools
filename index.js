@@ -77,7 +77,22 @@ function heal(maxHp, currentHp, healAmount) {
  * @returns {number} the character's proficiency bonus
  */
 function getProficiencyBonus(level, rank) {
-  // TODO
+  if (rank === "untrained") {
+    return 0;
+  }
+  let bonus = 0;
+
+  if (rank === "trained") {
+    bonus = 2;
+  } else if (rank === "expert") {
+    bonus = 4;
+  } else if (rank === "master") {
+    bonus = 6;
+  } else if (rank === "legendary") {
+    bonus = 8;
+  }
+
+  return level + bonus;
 }
 
 /**
@@ -91,7 +106,13 @@ function getProficiencyBonus(level, rank) {
  * @returns {number} the cover bonus to AC
  */
 function getCoverBonus(behindObstacle, takingCover) {
-  // TODO
+  if (!behindObstacle) {
+    return 0;
+  } else if (takingCover) {
+    return 4;
+  } else {
+    return 2;
+  }
 }
 
 /**
